@@ -1,0 +1,124 @@
+{
+  "assemblies": {
+    "pave_detail": {
+      "assembly": "Abr.PaveDetail.dll, PaveDetail.PluginHost"
+    }
+  },
+
+  "variables": {
+    "pd_tab_visible": "$(if,$(sysvar,task_pave_detail),0,1)",
+    "pd_btn_checked": "$(if,$(sysvar,task_pave_detail),20,16)"
+  },
+
+  "actions": {
+    "pd_node": {
+      "cmd": "pavedetail_node",
+      "title": "Узел",
+      "description": "Построить узел дорожной одежды по региону площадки",
+      "icon": "pd_node"
+    },
+    "pd_batch": {
+      "cmd": "pavedetail_batch",
+      "title": "Пакет",
+      "description": "Построить узлы по всем уникальным конструкциям площадки",
+      "icon": "pd_batch"
+    },
+    "pd_table": {
+      "cmd": "pavedetail_table",
+      "title": "Таблица",
+      "description": "Сводная таблица деталей покрытий по площадке",
+      "icon": "pd_table"
+    },
+    "pd_report": {
+      "cmd": "pavedetail_report",
+      "title": "Ведомость",
+      "description": "Ведомость состава конструкций на план",
+      "icon": "pd_report"
+    },
+    "pd_export": {
+      "cmd": "pavedetail_export",
+      "title": "Экспорт",
+      "description": "Выгрузить таблицу или ведомость в CSV либо HTML",
+      "icon": "pd_export"
+    },
+    "pd_catalog": {
+      "cmd": "pavedetail_catalog",
+      "title": "Каталог",
+      "description": "Правила штриховок материалов и типоразмеры бортов",
+      "icon": "pd_catalog"
+    },
+    "pd_about": {
+      "cmd": "about_pavedetail",
+      "title": "О модуле",
+      "description": "Информация о модуле Детали покрытий",
+      "icon": "abr_about"
+    },
+    "id_show_pave_detail_tab": {
+      "cmd": "$(if,$(sysvar,task_pave_detail),sysvar task_pave_detail 0,sysvar task_pave_detail 1)",
+      "title": "Детали покрытий",
+      "description": "Открыть вкладку Детали покрытий",
+      "icon": "pd_module",
+      "flags": "$(pd_btn_checked)"
+    },
+    "id_hide_pave_detail_tab": {
+      "cmd": "sysvar task_pave_detail 0",
+      "title": "Закрыть",
+      "icon": "ic_close"
+    }
+  },
+
+  "ribbon": {
+    "rbproj.modules": {
+      "items": [
+        { "group": "module_pave_detail", "title": "Детали покрытий" }
+      ]
+    },
+    "rbproj.modules.module_pave_detail": {
+      "items": [
+        { "button": "id_show_pave_detail_tab", "size": "large" }
+      ]
+    },
+
+    "rbproj.pave_detail": {
+      "items": [
+        { "group": "pd_build",    "title": "Построение" },
+        { "group": "pd_output",   "title": "Ведомость" },
+        { "group": "pd_settings", "title": "Настройки" },
+        { "group": "pd_close",    "title": "Закрыть" }
+      ]
+    },
+    "rbproj.pave_detail.pd_build": {
+      "items": [
+        { "button": "pd_node",  "size": "large" },
+        { "button": "pd_batch", "size": "large" }
+      ]
+    },
+    "rbproj.pave_detail.pd_output": {
+      "items": [
+        { "button": "pd_table",  "size": "large" },
+        { "button": "pd_report", "size": "large" },
+        { "button": "pd_export", "size": "large" }
+      ]
+    },
+    "rbproj.pave_detail.pd_settings": {
+      "items": [
+        { "button": "pd_catalog", "size": "large" },
+        { "button": "pd_about",   "size": "small" }
+      ]
+    },
+    "rbproj.pave_detail.pd_close": {
+      "items": [
+        { "button": "id_hide_pave_detail_tab", "size": "large" }
+      ]
+    }
+  },
+
+  "menubars": {
+    "rbproj.modules_menu": {
+      "items": [ { "id": "pd_menu", "title": "Детали покрытий" } ]
+    },
+    "rbproj.modules_menu.pd_menu": {
+      "items": [ "pd_node", "pd_batch", "-", "pd_table", "pd_report", "pd_export", "-", "pd_catalog", "-", "pd_about" ]
+    }
+  }
+}

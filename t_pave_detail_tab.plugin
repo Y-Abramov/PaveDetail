@@ -1,0 +1,13 @@
+{
+  "variables": {
+    "pd_tab_visible": "$(if,$(sysvar,task_pave_detail),0,1)"
+  },
+
+  "ribbon": {
+    "rbproj": {
+      "items": [
+        { "group": "pave_detail", "title": "Детали покрытий", "flags": "$(pd_tab_visible)" }
+      ]
+    }
+  }
+}
