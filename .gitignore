@@ -6,3 +6,5 @@ obj/
 *.tpm
 .lavish/
 *.pdf
+
+CLAUDE.md
